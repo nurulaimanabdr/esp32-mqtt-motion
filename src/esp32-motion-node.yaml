@@ -1,0 +1,41 @@
+esphome:
+  name: lab-esp32-node
+  friendly_name: Lab ESP32 Node
+
+esp32:
+  # Using nodemcu-32s and esp-idf ensures stable compilation
+  board: nodemcu-32s
+  framework:
+    type: esp-idf
+
+# Enable logging via USB and Wi-Fi
+logger:
+
+# Enable Over-The-Air updates
+ota:
+  - platform: esphome
+
+# Wi-Fi Configuration
+wifi:
+  # Replace with your local lab network details
+  ssid: "YOUR_WIFI_NAME"
+  password: "YOUR_WIFI_PASSWORD"
+
+  # Fallback network if the main Wi-Fi fails
+  ap:
+    ssid: "ESP32 Fallback Hotspot"
+    password: "LabPassword123"
+
+captive_portal:
+
+# MQTT Broker Configuration
+mqtt:
+  # Replace with the IP address of the machine running Docker/Mosquitto
+  broker: "192.168.X.X" 
+
+# Hardware Configuration
+binary_sensor:
+  - platform: gpio
+    pin: 27
+    name: "Lab Motion Sensor"
+    device_class: motion
