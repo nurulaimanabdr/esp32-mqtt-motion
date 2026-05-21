@@ -1,39 +1,31 @@
 esphome:
-  name: lab-esp32-node
-  friendly_name: Lab ESP32 Node
+  name: esp32
 
 esp32:
-  # Using nodemcu-32s and esp-idf ensures stable compilation
+  # Using nodemcu-32s and esp-idf fixes the compilation errors
   board: nodemcu-32s
   framework:
     type: esp-idf
 
-# Enable logging via USB and Wi-Fi
 logger:
 
-# Enable Over-The-Air updates
+api:
+
 ota:
   - platform: esphome
 
-# Wi-Fi Configuration
 wifi:
-  # Replace with your local lab network details
+  # The double quotes here fix the apostrophe error
   ssid: "YOUR_WIFI_NAME"
-  password: "YOUR_WIFI_PASSWORD"
+  password: "YOUR_PASSWORD_NAME"
 
-  # Fallback network if the main Wi-Fi fails
   ap:
-    ssid: "ESP32 Fallback Hotspot"
-    password: "LabPassword123"
+    ssid: "Esp32 Fallback Hotspot"
+    password: "YOUR_HOTSPOT_PASSWORD"
 
 captive_portal:
 
-# MQTT Broker Configuration
-mqtt:
-  # Replace with the IP address of the machine running Docker/Mosquitto
-  broker: "192.168.X.X" 
-
-# Hardware Configuration
+# Your PIR Motion Sensor
 binary_sensor:
   - platform: gpio
     pin: 27
